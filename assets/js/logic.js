@@ -48,31 +48,27 @@ function question(a) {
         li.appendChild(button);
         button.textContent = window.questions[a].choices[i];  
         button.value = window.questions[a].choices[i];
-    
-    }
 
-    var correctAnswer = window.questions[a].answer
+        button.addEventListener("click", function(event) {
+            if (event.target.matches("button") === true) {
+                var correctAnswer = window.questions[a].answer
+                var buttonClicked = event.target.value;
 
-    choicesEl.addEventListener("click", function(event) {
-        if (event.target.matches("button") === true) {
-            var buttonClicked = event.target.value;
-            console.log(buttonClicked);
-            console.log(correctAnswer);
-            if (buttonClicked === correctAnswer) {
-                choicesEl.textContent = "";
-                question(a+1);
-                sfxRight.play();
-                // console.log(buttonClicked.value);
-            } else {
-                // console.log(1);
-                choicesEl.textContent = "";
-                question(a+1);
-                sfxWrong.play();
-                secs = secs - 10;
+                if (buttonClicked === correctAnswer) {
+                    choicesEl.textContent = "";
+                    question(a+1);
+                    sfxRight.play();
+                    // console.log(buttonClicked.value);
+                } else {
+                    // console.log(1);
+                    choicesEl.textContent = "";
+                    question(a+1);
+                    sfxWrong.play();
+                    secs = secs - 10;
+                }
             }
-        }
-    }) 
-
+        }) 
+    }
 }
 
 

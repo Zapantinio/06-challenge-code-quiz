@@ -68,6 +68,7 @@ function question(a) {
                 choicesEl.textContent = "";
                 question(a+1);
                 sfxWrong.play();
+                secs = secs - 10;
             }
         }
     }) 

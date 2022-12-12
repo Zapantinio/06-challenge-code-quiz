@@ -9,11 +9,8 @@ choicesEl = document.querySelector("#choices");
 var secs = 100;
 var sfxRight = new Audio("assets/sfx/correct.wav");
 var sfxWrong = new Audio("assets/sfx/incorrect.wav");
+var questionNum = 0;
 
-const answers = [];
-for (var i = 0; i < 5; i++) {
-    answers[i] = window.questions[i].answer;
-}
 
 //Start quiz when clicking button
 buttonEl.addEventListener("click", function(event) {
@@ -24,16 +21,17 @@ buttonEl.addEventListener("click", function(event) {
         startEl.textContent = "";
 
         timer();
-        question(0);
+        question(questionNum);
     }
 
 })
 
 //Function that creates an h2 tag which includes the title for the question
-function question(a) {
+
+function question(questionNum) {
 
     questionsEl.setAttribute("class", "visible");
-    h2El.textContent = window.questions[a].title
+    h2El.textContent = window.questions[questionNum].title
 
     //Creates an ordered list which is appended to the wrapper
     var ol = document.createElement("ol");
@@ -46,52 +44,42 @@ function question(a) {
         var button = document.createElement("button");
         button.dataset.index = i;
         li.appendChild(button);
-        button.textContent = window.questions[a].choices[i];  
-        button.value = window.questions[a].choices[i];
+        button.textContent = window.questions[questionNum].choices[i];  
+        button.value = window.questions[questionNum].choices[i];
 
         button.addEventListener("click", function(event) {
             if (event.target.matches("button") === true) {
-                var correctAnswer = window.questions[a].answer
+                var correctAnswer = window.questions[questionNum].answer;
                 var buttonClicked = event.target.value;
 
                 if (buttonClicked === correctAnswer) {
-                    choicesEl.textContent = "";
-                    question(a+1);
-                    sfxRight.play();
-                    // console.log(buttonClicked.value);
+                        questionNum++;
+                        choicesEl.textContent = "";
+                        sfxRight.play();
+                    if (questionNum < 5) {
+                        question(questionNum);
+                    } else {
+                        questionsEl.textContent = "";
+                    }
                 } else {
-                    // console.log(1);
-                    choicesEl.textContent = "";
-                    question(a+1);
-                    sfxWrong.play();
-                    secs = secs - 10;
+                        questionNum++;
+                        choicesEl.textContent = "";
+                        sfxWrong.play();
+                        secs = secs - 15;
+                    if (questionNum < 5) {
+                        question(questionNum);
+                    } else {
+                        questionsEl.textContent = "";
+                    }
                 }
             }
         }) 
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function highscores() {
+    
+}
 
 function timer() {
     var timerInterval = setInterval(function() {
@@ -103,6 +91,5 @@ function timer() {
         }
     }, 1000);
 
-    
 };
 

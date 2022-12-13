@@ -33,7 +33,29 @@ The Code Quiz page is used as a "mock test" of coding assessments.
 
 Screenshots from the page for reference:
 
-* Start Screen
+Start Screen
+![alt text](./assets/images/start-screen.png)
+
+Question 1
+![alt text](./assets/images/question-1.png)
+
+Question 2
+![alt text](./assets/images/question-2.png)
+
+Question 3
+![alt text](./assets/images/question-3.png)
+
+Question 4
+![alt text](./assets/images/question-4.png)
+
+Question 5
+![alt text](./assets/images/question-5.png)
+
+End Screen
+![alt text](./assets/images/end-screen.png)
+
+High Scores Screen (TBC)
+![alt text](./assets/images/highscores-screen.png)
 
 
 
